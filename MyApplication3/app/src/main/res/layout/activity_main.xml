@@ -39,13 +39,12 @@
         android:layout_marginTop="5dp">
     </Button>
 
-    <ListView
-        android:id="@+id/productList"
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@color/mycolor">
-    </ListView>
+        android:id="@+id/fragment_container">
+
+    </FrameLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -60,3 +59,12 @@
     </FrameLayout>
 
 </LinearLayout>
+
+<!--
+<ListView
+android:id="@+id/productList"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginTop="10dp"
+android:background="@color/mycolor">
+</ListView>-->

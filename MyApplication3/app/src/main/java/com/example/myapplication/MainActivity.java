@@ -52,12 +52,12 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        productList = findViewById(R.id.productList);
+        /*productList = findViewById(R.id.productList);
         View footer = LayoutInflater.from(this).inflate(R.layout.footer,null);
         View header = LayoutInflater.from(this).inflate(R.layout.header,null);
         footerTextView = footer.findViewById(R.id.totalItemsTextView);
         productList.addFooterView(footer);
-        productList.addHeaderView(header);
+        productList.addHeaderView(header);*/
 
 
         parseJson = findViewById(R.id.parseJSON);
@@ -95,9 +95,10 @@ public class MainActivity extends AppCompatActivity {
                         if (jsonObject.get(key) instanceof JSONArray) {
                             JSONArray jsonArr = jsonObject.getJSONArray(key);
                             ArrayList<JSONObject> listItems = getArrayListFromJSON(jsonArr);
-                            ProductAdapter adapter = new ProductAdapter(getApplicationContext(), R.layout.list_item, R.id.productTitle, listItems);
+                            /*ProductAdapter adapter = new ProductAdapter(getApplicationContext(), R.layout.list_item, R.id.productTitle, listItems);
                             productList.setAdapter(adapter);
-                            footerTextView.setText("Total count: " + String.valueOf(adapter.getTotalCount()));
+                            footerTextView.setText("Total count: " + String.valueOf(adapter.getTotalCount()));*/
+                            displayFragment(listItems);
                         }
                     }
                 }
@@ -128,6 +129,15 @@ public class MainActivity extends AppCompatActivity {
             exception.printStackTrace();
         }
         return listItems;
+    }
+
+    private void displayFragment(ArrayList<JSONObject> listItems) {
+        fragment_list fragment = new fragment_list(listItems);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
 }
